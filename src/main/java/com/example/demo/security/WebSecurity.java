@@ -30,7 +30,7 @@ public class WebSecurity {
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS) //Como se va a manejar la sesion, se mantiene mientras se consulte el API
 		.and()
 		.authorizeRequests()
-		.antMatchers("/API/v1.0/Autorizacion/tokens/obtener/**")
+		.antMatchers("/tokens/obtener/**")
 		.permitAll()
 		.anyRequest()
 		.authenticated();

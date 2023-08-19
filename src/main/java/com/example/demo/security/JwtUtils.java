@@ -22,10 +22,9 @@ public class JwtUtils {
 
 	public String generateJwtToken(String nombre) {
 		LOG.info("Semilla: " + jwtSecret + " Tiempo: " + jwtExpiration);
-		return Jwts.builder()
-				.setSubject(nombre)
-				.setIssuedAt(new Date())
+		return Jwts.builder().setSubject(nombre).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + this.jwtExpiration))
 				.signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
 	}
+
 }

@@ -14,17 +14,17 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtUtils {
 	private static final Logger LOG = LoggerFactory.getLogger(JwtUtils.class);
 
-	@Value("${app.jwt.secret}")
-	private String jwtSecret;
+	//@Value("${app.jwt.secret}")
+	//private String jwtSecret;
 
 	@Value("${app.jwt.expiration.ms}")
 	private int jwtExpiration;
 
-	public String generateJwtToken(String nombre) {
-		LOG.info("Semilla: " + jwtSecret + " Tiempo: " + jwtExpiration);
+	public String generateJwtToken(String nombre, String semilla) {
+		LOG.info("Semilla: " + semilla + " Tiempo: " + jwtExpiration);
 		return Jwts.builder().setSubject(nombre).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + this.jwtExpiration))
-				.signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
+				.signWith(SignatureAlgorithm.HS512, semilla).compact();
 	}
 
 }
